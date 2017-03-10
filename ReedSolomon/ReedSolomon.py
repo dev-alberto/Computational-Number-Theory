@@ -1,13 +1,20 @@
-from arrived import noisy_received_message, noisy_simple_received_message
+from arrived import simple_encoding
 from Lagrange import make_vandermonde_matrix
+from util import p
 from decoding import decode, retrieve_message
 
-vandermonde, trimmed_received = make_vandermonde_matrix(noisy_simple_received_message)
+#print(simple_encoding)
+#print("***********")
+vandermonde, trimmed_received = make_vandermonde_matrix(simple_encoding)
+#print("****")
+#print(trimmed_received)
+#print("*******")
 original_poly = decode(vandermonde, trimmed_received)
+#print(original_poly)
 original_message = retrieve_message(original_poly)
 
-f = open("simpleM", "r")
-text = f.read()
+print(original_message)
 
-if original_message == text:
-    print("ok")
+f = open("simpleM", "r")
+
+

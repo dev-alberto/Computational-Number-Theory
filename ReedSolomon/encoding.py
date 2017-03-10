@@ -17,6 +17,11 @@ def convert_to_int(byte_arr):
     result = []
     for i in byte_arr:
         result.append(int.from_bytes(i, byteorder='big'))
+
+    #introducem termenul liber
+    result.insert(0, 1)
+
+   # print(result)
     return result
 
 
@@ -31,8 +36,15 @@ def poly_horner_eval(poly, i):
 def create_encoding(filename):
     binary_bloc = read_binary(filename)
     int_bloc = convert_to_int(binary_bloc)
+    #print("INT BLOC: ")
+    #print(int_bloc)
     encoding = []
     for i in range(1, len(int_bloc) + 3):
+        #y1, y2, ..., yn
+        #poly_horner_eval(int_bloc, i)
         encoding.append(poly_horner_eval(int_bloc, i))
     return encoding
 
+
+#print(poly_horner_eval([1, 0, 2], 2))
+#print(create_encoding("simpleM"))
