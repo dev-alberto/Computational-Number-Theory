@@ -3,21 +3,21 @@ import itertools
 from numpy import prod
 
 
-def partial_interpolation(A, received):
-    """Returns free coefficient"""
-   # return sum(enc[i] * j * inv((j-i), p) for i, j in A if i != j)
-    s = 0
-    for i in A:
-        numarator = 1
-        numitor = 1
-        for j in A:
-            if j != i:
-                #product *= j * inv(j-i, p)
-                numarator *= j
-                numitor *= j-i
-        product = numarator * inv(numitor, p)
-        s += received[i-1] * product
-    return s % p
+# def partial_interpolation(A, received):
+#     """Returns free coefficient"""
+#    # return sum(enc[i] * j * inv((j-i), p) for i, j in A if i != j)
+#     s = 0
+#     for i in A:
+#         numarator = 1
+#         numitor = 1
+#         for j in A:
+#             if j != i:
+#                 #product *= j * inv(j-i, p)
+#                 numarator *= j
+#                 numitor *= j-i
+#         product = numarator * inv(numitor, p)
+#         s += received[i-1] * product
+#     return s % p
 
 
 def efficient_partial_interpolation(A, received):
@@ -67,7 +67,14 @@ def make_vandermonde_matrix(received):
     print(A)
     received = trim_received_poly(A, received)
     result = [[0 for x in range(len(received))] for x in range(len(received))]
-    for i in A:
-        for j in A:
-            result[i-1][j-1] = pow(i, j-1, p)
+
+    _A = [i for i in range(len(A))]
+
+    # for i in A:
+    #     for j in A:
+    #         result[i-1][j-1] = pow(i, j-1, p)
+    for i in _A:
+        for j in _A:
+            result[i][j] = pow(A[i], j, p)
+
     return result, received

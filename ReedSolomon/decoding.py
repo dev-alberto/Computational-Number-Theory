@@ -1,5 +1,5 @@
 from util import p
-from sympy import Matrix, pprint
+from sympy import Matrix
 
 
 def dot_product(matrix, vector):

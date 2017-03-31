@@ -1,10 +1,6 @@
 from random import randrange, getrandbits
 from itertools import repeat
-
-
-#257 bit prime
-p = 52469750110678792790467095364212996041618431825248934845942686597543657345063
-#p = 9973
+import math
 
 
 ####### Euclid #######
@@ -20,6 +16,11 @@ def gcd_extended(a, b):
 
     return old_s, old_t, old_r
 
+
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
 
 ####### Invers Modular #######
 def inv(a, n):
@@ -58,6 +59,7 @@ def isProbablePrime(n, t=7):
         if isComposite(randrange(2, n)):
             return False
     return True
+
 
 
 ### Generate random prime ###

@@ -43,6 +43,7 @@ def create_encoding(filename):
         #y1, y2, ..., yn
         #poly_horner_eval(int_bloc, i)
         encoding.append(poly_horner_eval(int_bloc, i))
+    #print(encoding)
     return encoding
 
 
