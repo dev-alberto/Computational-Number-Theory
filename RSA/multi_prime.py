@@ -14,6 +14,7 @@ def gen_multi_prime_keys():
     q = getPrime(512)
     r = getPrime(512)
     #print("primes are :" + str(p) + " " + str(q) + " " + str(r))
+    print(p, q, r)
     n = p * q * r
     phi = (p-1) * (q-1) * (r-1)
     e = randrange(1, phi)
@@ -21,6 +22,7 @@ def gen_multi_prime_keys():
     while g != 1:
         e = randrange(1, phi)
         g = gcd(e, phi)
+    e = 41
     d = inv(e, phi)
     #print("d is: " + str(d))
     return [(n, e), (n, d), (p, q, r)]
@@ -91,7 +93,7 @@ def decrypt_using_garner(c, d, primes, n):
     x_p = pow(c % primes[0], d % (primes[0] - 1), primes[0])
     x_q = pow(c % primes[1], d % (primes[1] - 1), primes[1])
     x_r = pow(c % primes[2], d % (primes[2] - 1), primes[2])
-    return Garner(primes, x_p, x_p, x_r, n)
+    return Garner(primes, x_p, x_q, x_r, n)
 
 
 if __name__ == '__main__':

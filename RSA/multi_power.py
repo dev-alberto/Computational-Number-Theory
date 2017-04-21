@@ -15,6 +15,7 @@ def gen_keys():
     while g != 1:
         e = randrange(1, phi)
         g = gcd(e, phi)
+    e = 41
     d = inv(e, phi)
 
     dp = d % (p - 1)
@@ -68,7 +69,7 @@ def classic_decrypt(c, d, n):
 if __name__ == '__main__':
     m_ = 65
     public, private, d = gen_keys()
-    print(public)
+    #print(public)
     c = encrypt(public, m_)
 
     start_hensel = time()

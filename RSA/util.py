@@ -1,6 +1,6 @@
 from random import randrange, getrandbits
 from itertools import repeat
-import math
+
 
 
 ####### Euclid #######
@@ -21,6 +21,7 @@ def gcd(a, b):
     while b != 0:
         a, b = b, a % b
     return a
+
 
 ####### Invers Modular #######
 def inv(a, n):
